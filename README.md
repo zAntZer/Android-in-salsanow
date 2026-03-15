@@ -1,6 +1,6 @@
 # 📱 GFN SALSA NOW: Tutorial para instalar Android en QEMU
 
-> **Change language >**  [![Español](https://img.shields.io/badge/Idioma-Español-red)](README.md) [![English](https://img.shields.io/badge/Language-English-blue)](EN.md) <!-- Botón para versión en inglés si existe -->
+> **Change language >**  [![Español](https://img.shields.io/badge/Idioma-Español-red)](README.md) [![English](https://img.shields.io/badge/Language-English-blue)](en.md) <!-- Botón para versión en inglés si existe -->
 
 ¡Bienvenido al tutorial definitivo para correr **Android (Bliss OS)** dentro de QEMU!  
 Perfecto para probar aplicaciones, jugar o simplemente experimentar con Android en tu PC.  
