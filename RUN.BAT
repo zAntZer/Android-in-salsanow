@@ -1,0 +1,1 @@
+qemu-system-x86_64 -m 8192 -smp 1 -cpu max -drive file=disco_bliss.qcow2,format=qcow2 -cdrom bliss.iso -boot d -vga std -display sdl -net nic -net user -no-reboot

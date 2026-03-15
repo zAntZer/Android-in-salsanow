@@ -1,0 +1,1 @@
+qemu-img create -f qcow2 disco_bliss.qcow2 32G
