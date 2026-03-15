@@ -1,78 +1,111 @@
+# 📱 GFN SALSA NOW: Tutorial to install Android on QEMU
 
-# 🚀 GFN SALSA NOW: Android QEMU Installation Tutorial
+> **Change language >**  [![Español](https://img.shields.io/badge/Idioma-Español-red)](README.md) [![English](https://img.shields.io/badge/Language-English-blue)](EN.md) <!-- Button for English version if exists -->
 
-Welcome! This repository contains the instructions and scripts needed to install and emulate Android (Bliss OS) using QEMU. 
+Welcome to the ultimate tutorial to run **Android (Bliss OS)** inside QEMU!  
+Perfect for testing apps, gaming, or just experimenting with Android on your PC.  
+Follow the steps and in minutes you'll have your virtual machine up and running.
+> **Community note:** It might not work, so it's good to contribute and research to improve!
 
-> **Community Note:** The more you test this method, the more you can help improve the configuration and performance!
-
----
-
-## 🛠️ Prerequisites
-
-1. **Download QEMU:**
-   You must download and extract QEMU to the following exact path for the default scripts to work:
-   `I:\ANTONY\Android\QEMU`
-   *If you choose to extract it to a different path, you will need to open and edit the `.BAT` files to modify the corresponding paths.*
-
-2. **Download the Bliss OS ISO:**
-   * [Download Android ISO](https://gofile.io/d/Mcv32D)
-   * Make sure to save the file in the same working directory.
+> [!IMPORTANT]
+> If you choose a different path, you **must** update the directory references in the `.bat` files accordingly.
 
 ---
 
-## ⚙️ Installation & Usage Instructions
+## 📋 Prerequisites
 
-### 1. Create the Virtual Disk
-First, you need to create the virtual hard drive where the Android system will be installed. 
-Run the [`CREATE.BAT`](https://github.com/zAntZer/Android-in-salsanow/blob/main/CREATE.BAT) file, or if you prefer the command line, use this command:
+1. **QEMU** installed on your system.  
+   - Download it from [QEMU WEB](https://www.qemu.org/download/) or use the one you already have.  
+   - **Suggested path:** `I:\ANTONY\Android\QEMU`  
+   - If you install it in another folder, you **must modify the paths in the `.bat` files** or run the commands manually.
 
-```cmd
+2. **Bliss OS ISO** (Android optimized for PC).  
+   - Download the image from this link:  
+     [🔗 Download ISO](https://gofile.io/d/Mcv32D)  
+   - The file will be named something like `bliss.iso` (you can rename it).
+
+3. **Disk space:** At least 32 GB free for the virtual disk.
+
+---
+
+## 🛠️ Create the virtual disk
+
+Run the `CREATE.BAT` file (available in the repository) or use the command manually:
+
+```batch
 qemu-img create -f qcow2 disco_bliss.qcow2 32G
-
 ```
 
-### 2. Run the Virtual Machine
+This will generate a `disco_bliss.qcow2` file that grows as you install apps.
 
-To start the environment, run the [`RUN.BAT`](https://github.com/zAntZer/Android-in-salsanow/blob/main/RUN.BAT) file, which contains the optimized parameters to boot QEMU:
-
-```cmd
-qemu-system-x86_64 -m 8192 -smp 1 -cpu max -drive file=disco_bliss.qcow2,format=qcow2 -cdrom bliss.iso -boot d -vga std -display sdl -net nic -net user -no-reboot
-
-```
-
-### 3. Configure Boot Parameters
-
-When the initial screen with the Bliss OS boot list loads, follow these steps:
-
-1. Press the **`TAB`** key.
-2. Type the following line right **after** the word `linux`:
-```text
-nomodeset HWACCEL=0 NO3D=1 DEBUG=2
-
-```
-
-
-3. Press **`ENTER`**.
-
-### 4. Initialization
-
-After waiting a moment, the screen will show a command console (Shell) like this:
-
-Once here:
-
-1. Type `exit` and press **`ENTER`**.
-2. Type `exit` again and press **`ENTER`** a second time.
-
-After this, the system will start loading, and you will see the Bliss OS logo on the screen:
+📁 **CREATE.BAT** → [view file](https://github.com/zAntZer/Android-in-salsanow/blob/main/CREATE.BAT)
 
 ---
 
-## 💡 Troubleshooting
+## 🚀 Start the virtual machine
 
-**I can't find the `=` symbol on my keyboard inside QEMU**
-If you have keyboard layout issues when typing the boot parameters, do the following:
+Use the `RUN.BAT` file or run the following command (adjust paths if necessary):
 
-1. Press `Ctrl` + `Alt` + `2` to open the QEMU console.
-2. Type the command: `sendkey equal`
-3. Return to the virtual machine screen by pressing `Ctrl` + `Alt` + `1`.
+```batch
+qemu-system-x86_64 -m 8192 -smp 1 -cpu max -drive file=disco_bliss.qcow2,format=qcow2 -cdrom bliss.iso -boot d -vga std -display sdl -net nic -net user -no-reboot
+```
 
+📁 **RUN.BAT** → [view file](https://github.com/zAntZer/Android-in-salsanow/blob/main/RUN.BAT)
+
+> **Note:** Assign at least 8 GB of RAM (`-m 8192`) for smooth performance. If your PC has less, reduce it to `4096`.
+
+---
+
+## ⚙️ Boot configuration
+
+When the Bliss OS boot menu appears (with a list of options):
+
+1. **Press the `TAB` key** on the selected option.
+2. A kernel command line will be shown. At the end of the line, add this:
+
+```
+nomodeset HWACCEL=0 NO3D=1 DEBUG=2
+```
+
+## ⌨️ Keyboard issues
+
+If your keyboard layout doesn't have the `=` (equals) character:
+
+1. Press `Ctrl + Alt + 2` to open the QEMU console (monitor).
+2. Type the command:
+```
+sendkey equal
+```
+3. Press `Enter`.  
+   - You'll see a screen similar to this:  
+
+   ![Initial boot screen](https://raw.githubusercontent.com/zAntZer/Android-in-salsanow/main/imagen.png)
+
+4. When the message appears, type `exit` and press `Enter` twice.  
+   The machine will continue booting and show the Bliss OS logo:
+
+   ![Bliss OS logo](https://raw.githubusercontent.com/zAntZer/Android-in-salsanow/main/imagen(1).png)
+
+5. Wait for the initial setup to finish and voilà! Android is now running.
+
+---
+
+## 🧪 Testing and improvements
+
+This project is experimental. The more you test, the more we can improve compatibility.  
+If you find bugs or have suggestions, open an **issue** or contribute directly.
+
+---
+
+## 📌 Additional notes
+
+- The included `.bat` files assume QEMU is located at `I:\ANTONY\Android\QEMU`. If that's not your case, edit them with a text editor.
+- You can change the disk size by editing the `qemu-img create` command.
+- For better performance, try different values in the kernel parameters (remove `DEBUG=2` if you no longer need it).
+
+---
+
+Enjoy Android on QEMU! 🎉  
+If it helped you, don't forget to leave a ⭐ on the repository.
+
+---
