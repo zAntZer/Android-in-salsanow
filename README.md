@@ -1,5 +1,5 @@
 
-* [🇺🇸 - English]([https://gofile.io/d/Mcv32D](https://github.com/zAntZer/Android-in-salsanow/edit/main/en.md))
+* [🇺🇸 - English](https://github.com/zAntZer/Android-in-salsanow/edit/main/en.md))
 # 🚀 GFN SALSA NOW: Tutorial para Instalar Android en QEMU
 
 Bienvenido. Este repositorio contiene las instrucciones y scripts necesarios para instalar y emular Android (Bliss OS) utilizando QEMU. 
